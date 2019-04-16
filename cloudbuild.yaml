@@ -1,0 +1,17 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['cp', 'gs://${PROJECT_ID}.appspot.com/movies/${_MOVIE_FILE}', 'movie.mp4']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/movies/${_MOVIE_NAME}', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/movies/${_MOVIE_NAME}']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['beta', 'run', 'deploy', '${_MOVIE_NAME}-movie', '--allow-unauthenticated', '--image=gcr.io/$PROJECT_ID/movies/${_MOVIE_NAME}','--region=us-central1']
+
+substitutions:
+  _MOVIE_NAME: sintel
+  _MOVIE_FILE: sintel.mp4
+images: ['gcr.io/$PROJECT_ID/movies/${_MOVIE_NAME}']
