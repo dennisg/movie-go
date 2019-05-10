@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	_ "github.com/dennisg/movie-go/pages"
+	_ "github.com/dennisg/movie-go/handlers"
 )
 
 var port = ":8080"
