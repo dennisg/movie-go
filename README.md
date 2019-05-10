@@ -13,15 +13,15 @@ and rename it to `movie.mp4` in the root of the project.
     
 #### Build the image    
 
-`build -t gcr.io/${PROJECT_ID}/movies/sintel .`
+`gcloud build -t gcr.io/${PROJECT_ID}/movies/sintel .`
 
 #### Push the image to your Google Cloud Repository
 
-`push gcr.io/${PROJECT_ID}/movies/sintel`
+`gcloud push gcr.io/${PROJECT_ID}/movies/sintel`
 
 #### Run it on Cloud Run
 
-`beta run deploy sintel-movie --allow-unauthenticated --image=gcr.io/${PROJECT_ID}/movies/sintel --region=us-central1`
+`gcloud beta run deploy sintel-movie --allow-unauthenticated --image=gcr.io/${PROJECT_ID}/movies/sintel --region=us-central1`
 
 When this deployment is successful, you will be presented with an URL; browse to it and enjoy the video!
 
