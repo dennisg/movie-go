@@ -26,7 +26,7 @@ func init() {
 	http.HandleFunc("/video", VideoStream)
 }
 
-//Serve the video file in chucks that are smaller than 32MB
+//Serve the video file in chucks that are smaller than 32MB starting at the offset determined by the client
 func VideoStream(w http.ResponseWriter, r *http.Request)  {
 	if r.Method == http.MethodHead {
 		w.Header().Set("Accept-Ranges", "bytes")
